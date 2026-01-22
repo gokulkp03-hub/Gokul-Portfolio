@@ -15,10 +15,14 @@ import Photography from "./pages/Photography";
 import Videography from "./pages/Videography";
 import EditingDesign from "./pages/EditingDesign";
 import BrandsAgencies from "./pages/BrandsAgencies";
+import CaseStudies from "./pages/CaseStudies";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Router() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Switch>
         <Route path={"/"} component={Home} />
@@ -31,6 +35,8 @@ function Router() {
         <Route path={"/videography"} component={Videography} />
         <Route path={"/editing-design"} component={EditingDesign} />
         <Route path={"/brands-agencies"} component={BrandsAgencies} />
+        <Route path={"/case-studies"} component={CaseStudies} />
+        <Route path="/case-studies/:slug" component={CaseStudyDetail} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

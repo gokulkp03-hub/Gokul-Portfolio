@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink } from "lucide-react";
+import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3 } from "lucide-react";
 import { useLocation } from "wouter";
-import CreativeScroll from "../components/CreativeScroll";
 import { motion } from "framer-motion";
 
 const FEATURED_WORK = [
@@ -14,11 +13,11 @@ const FEATURED_WORK = [
 ];
 
 const SERVICES = [
-  { title: "Videography", description: "Brand films, ads, reels, events", icon: Video },
-  { title: "Photography", description: "Commercial, lifestyle, products", icon: Camera },
-  { title: "Video Editing", description: "Short & long form content", icon: Edit3 },
-  { title: "Graphic Design", description: "Social media & brand visuals", icon: Palette },
-  { title: "Motion Graphics", description: "Animated content & explainer videos", icon: Zap },
+  { title: "Meta Ads & Campaign Strategy", description: "Ad creatives, targeting, retargeting, scaling", icon: Target },
+  { title: "Performance Marketing", description: "Funnel design, optimization, conversion strategy", icon: TrendingUp },
+  { title: "Social Media Advertising", description: "Campaign frameworks, content systems, growth", icon: BarChart3 },
+  { title: "Creative Production", description: "Video production, photography, brand visuals", icon: Video },
+  { title: "Content Strategy", description: "Brand positioning, analytics, social media growth", icon: Palette },
 ];
 
 // Animation variants for scroll reveals
@@ -57,8 +56,160 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black">
 
-      {/* Hero Section - Scrollytelling */}
-      <CreativeScroll />
+      {/* Hero Section - Business First */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-black overflow-hidden">
+        {/* Subtle background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-600/5 via-black to-black" />
+
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left Column - Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
+            >
+              {/* Value-First Headline */}
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
+                  Scaling Brands with Performance + Creative
+                </h1>
+
+                {/* Primary Identity */}
+                <h2 className="text-xl md:text-2xl font-semibold text-orange-500">
+                  Gokul KP — Digital Marketer & Performance Strategist
+                </h2>
+
+                {/* Secondary Identity (Creative) */}
+                <p className="text-base md:text-lg text-gray-400">
+                  Creative Director • Videographer • Photographer • Editor
+                </p>
+              </div>
+
+              {/* Improved Description */}
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
+                I design, launch, and scale performance-driven marketing systems — combining Meta ads, funnels, content, and creative production to drive real business growth.
+              </p>
+
+              {/* Value Bullets - Marketing + Creative Mix */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  "Meta Ads & Campaign Strategy",
+                  "Performance Marketing",
+                  "Funnel Building",
+                  "Content Systems",
+                  "Brand Growth Strategy",
+                  "Creative Direction",
+                  "Videography / Video Editing",
+                  "Photography / Photo Editing"
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + idx * 0.05 }}
+                    className="flex items-center gap-3 text-gray-400"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    <span className="text-sm md:text-base">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 pt-4"
+              >
+                <Button
+                  onClick={() => navigate("/portfolio")}
+                  className="px-8 py-6 rounded-lg font-semibold bg-orange-600 text-white hover:bg-orange-700 text-lg transition-all duration-300 hover:scale-105"
+                >
+                  View Work <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+                <Button
+                  onClick={() => scrollToSection("contact")}
+                  className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
+                >
+                  Contact Me
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Visual Element */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hidden lg:block relative"
+            >
+              <div className="relative">
+                {/* Glass card with subtle glow */}
+                <div className="relative rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 p-8 shadow-2xl">
+                  <div className="space-y-6">
+                    {/* Stats/Metrics Display */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-black/40 rounded-xl p-6 border border-orange-500/20">
+                        <div className="text-3xl font-bold text-orange-500 mb-2">3+</div>
+                        <div className="text-sm text-gray-400">Years Experience</div>
+                      </div>
+                      <div className="bg-black/40 rounded-xl p-6 border border-orange-500/20">
+                        <div className="text-3xl font-bold text-orange-500 mb-2">50+</div>
+                        <div className="text-sm text-gray-400">Campaigns</div>
+                      </div>
+                    </div>
+
+                    {/* Mini Performance Dashboard Widget */}
+                    <div className="bg-gradient-to-br from-orange-600/20 to-orange-500/5 rounded-xl p-6 border border-orange-500/20">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-gray-400 uppercase tracking-wider">Performance</span>
+                          <TrendingUp className="w-4 h-4 text-orange-500" />
+                        </div>
+
+                        {/* Mini Metrics */}
+                        <div className="grid grid-cols-3 gap-3">
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-orange-400">4.2x</div>
+                            <div className="text-xs text-gray-500">ROAS</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-orange-400">287</div>
+                            <div className="text-xs text-gray-500">Leads</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-lg font-bold text-orange-400">156%</div>
+                            <div className="text-xs text-gray-500">CVR</div>
+                          </div>
+                        </div>
+
+                        {/* Subtle Graph Lines */}
+                        <div className="flex items-end gap-1 h-12">
+                          {[40, 55, 45, 70, 60, 85, 75, 90].map((height, idx) => (
+                            <div
+                              key={idx}
+                              className="flex-1 bg-orange-500/30 rounded-t"
+                              style={{ height: `${height}%` }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Glow effect */}
+                <div className="absolute -inset-4 bg-orange-500/10 rounded-3xl blur-3xl -z-10" />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
 
       {/* Featured Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
@@ -184,8 +335,8 @@ export default function Home() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">What I Do</h2>
-            <p className="text-xl text-gray-400">End-to-end visual solutions for brands and individuals</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Services</h2>
+            <p className="text-xl text-gray-400">Full-stack digital marketing and creative production</p>
           </motion.div>
 
           <motion.div
@@ -236,10 +387,10 @@ export default function Home() {
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white">About Me</h2>
               <p className="text-lg text-gray-400">
-                I'm a creative professional focused on storytelling through visuals, helping brands communicate clearly and emotionally across platforms.
+                I'm a digital marketer and performance strategist who builds campaigns that drive measurable results. My approach combines data-driven strategy with creative execution to help brands grow across digital platforms.
               </p>
               <p className="text-lg text-gray-400">
-                With 3+ years of experience in digital marketing and content creation, I specialize in creating high-impact content that drives engagement, conversions, and brand awareness.
+                With 3+ years of experience in digital marketing, performance advertising, and content creation, I specialize in Meta Ads, campaign strategy, funnel optimization, and brand growth systems that deliver ROI.
               </p>
               <Button
                 onClick={() => navigate("/experience")}
@@ -417,7 +568,7 @@ export default function Home() {
                 <span className="text-orange-500">Gokul</span>
                 <span className="text-white"> KP</span>
               </div>
-              <p className="text-gray-400 text-sm">Visual Storyteller & Digital Creator</p>
+              <p className="text-gray-400 text-sm">Digital Marketer & Performance Strategist</p>
             </div>
             {/* Footer links simplification for brevity in this refactor, keeping structure */}
             <div>

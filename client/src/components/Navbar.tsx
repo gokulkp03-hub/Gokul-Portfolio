@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 const NAV_ITEMS = [
     { id: "home", label: "Home", icon: HomeIcon, path: "/" },
     { id: "portfolio", label: "Portfolio", path: "/portfolio" },
+    { id: "case-studies", label: "Case Studies", path: "/case-studies" },
     { id: "services", label: "Services", path: "/services" },
     { id: "experience", label: "Experience", path: "/experience" },
     { id: "contact", label: "Contact", path: "/#contact" },
