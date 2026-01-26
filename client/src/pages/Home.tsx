@@ -213,6 +213,19 @@ export default function Home() {
                   className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
                 >
                   Contact Me
+
+<Button
+  onClick={() =>
+    window.open(
+      "https://drive.google.com/drive/folders/1o8NvNmd9vjd8Id7LJuXiwfw8_Q60VhHx?usp=sharing",
+      "_blank"
+    )
+  }
+  className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
+>
+  Full Portfolio
+</Button>
+
                 </Button>
               </motion.div>
             </motion.div>
@@ -285,45 +298,63 @@ export default function Home() {
             </motion.div>
 
           </div>
-        </div>
-      </section>
+       </div>
+</section>
 
-      {/* Creative Showcase Section */}
-      <section className="relative py-12 px-0 bg-black border-b border-white/5 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <p className="text-gray-400 text-sm uppercase tracking-widest text-center md:text-left">
-            A quick look at what I create
-          </p>
-        </div>
+{/* Creative Showcase Section */}
+<section className="relative py-12 bg-black border-b border-white/5 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-6">
+    <p className="text-orange-500/80 text-sm uppercase tracking-widest font-medium">
+      A quick look at what I create
+    </p>
+  </div>
 
-        {/* Horizontal Scroll Strip */}
-        <div className="flex overflow-x-auto pb-8 hide-scrollbar px-4 sm:px-6 lg:px-8 gap-4 md:grid md:grid-cols-5 md:gap-4 md:overflow-visible">
-          {CREATIVE_SHOWCASE.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => navigate(item.link)}
-                className="flex-shrink-0 w-64 md:w-auto p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-orange-500/30 hover:bg-white/10 transition-all duration-300 cursor-pointer group flex flex-col justify-between h-40 relative overflow-hidden"
-              >
-                <div className={`p-3 rounded-xl bg-black/40 w-fit mb-4 group-hover:scale-110 transition-transform duration-300 ${item.color}`}>
-                  <Icon size={24} />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold text-lg leading-tight group-hover:text-orange-400 transition-colors">{item.title}</h3>
-                  <p className="text-gray-500 text-sm mt-1">{item.tagline}</p>
-                </div>
-                {/* Glow Effect */}
-                <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-gradient-to-br from-white/5 to-white/0 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all duration-500" />
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
+  {/* Proper Grid (no weird wide cards) */}
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      {CREATIVE_SHOWCASE.map((item, idx) => {
+        const Icon = item.icon;
+        return (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.08 }}
+            onClick={() => navigate(item.link)}
+            className="p-6 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 hover:border-orange-500/40 hover:bg-black/70 transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px] relative overflow-hidden shadow-lg hover:shadow-orange-500/10"
+          >
+           <div className="
+  p-3 rounded-xl 
+  bg-black/60 
+  w-fit mb-4 
+  border border-white/10 
+  text-gray-400
+  group-hover:text-orange-400
+  group-hover:border-orange-500/40
+  group-hover:scale-110
+  transition-all duration-300
+">
+  <Icon size={22} />
+</div>
+
+
+            <div>
+              <h3 className="text-white font-semibold text-lg leading-tight group-hover:text-orange-400 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-gray-400 text-sm mt-1">{item.tagline}</p>
+            </div>
+
+            {/* Subtle Glow */}
+            <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
 
       {/* Showreel Block */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
