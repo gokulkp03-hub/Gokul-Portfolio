@@ -163,6 +163,15 @@ export default function CategoryPage() {
                   animation: `slideUp 0.6s ease-out ${index * 0.1}s both`,
                 }}
               >
+                {brand.logo && (
+                  <div className="w-32 h-32 mb-4 relative flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="w-full h-full object-contain filter brightness-100 group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                )}
                 <h3 className="text-2xl font-bold text-white group-hover:text-orange-500 transition-colors text-center mb-2">
                   {brand.name}
                 </h3>
@@ -194,10 +203,10 @@ export default function CategoryPage() {
                 }}
               >
                 <div className={`${item.type === "image"
-                    ? "aspect-[3/4]"
-                    : item.aspectRatio === "vertical"
-                      ? "aspect-[9/16]"
-                      : "aspect-video"
+                  ? "aspect-[3/4]"
+                  : item.aspectRatio === "vertical"
+                    ? "aspect-[9/16]"
+                    : "aspect-video"
                   } overflow-hidden relative`}>
                   <img
                     src={item.type === "image" ? item.src : item.thumbnail}

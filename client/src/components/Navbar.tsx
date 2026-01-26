@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Menu, X, Home as HomeIcon } from "lucide-react";
+import { Menu, X, Home as HomeIcon, Sun, Moon } from "lucide-react";
 import { useLocation } from "wouter";
+import { useTheme } from "@/contexts/ThemeContext";
 
-const NAV_ITEMS = [
-    { id: "home", label: "Home", icon: HomeIcon, path: "/" },
+const NAV_ITEMS: { id: string; label: string; path: string; icon?: typeof HomeIcon }[] = [
     { id: "portfolio", label: "Portfolio", path: "/portfolio" },
     { id: "case-studies", label: "Case Studies", path: "/case-studies" },
     { id: "services", label: "Services", path: "/services" },
@@ -14,6 +14,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [location, navigate] = useLocation();
+    const { theme, toggleTheme } = useTheme();
 
     const handleNavigation = (item: typeof NAV_ITEMS[0]) => {
         if (item.id === "contact") {
@@ -76,6 +77,14 @@ export default function Navbar() {
                     >
                         Download CV
                     </a>
+
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 rounded-lg text-gray-400 hover:text-orange-500 hover:bg-white/5 transition-all"
+                        aria-label="Toggle theme"
+                    >
+                        {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                    </button>
                 </div>
 
                 <button
@@ -105,6 +114,17 @@ export default function Navbar() {
                         >
                             Download CV
                         </a>
+
+                        <button
+                            onClick={() => {
+                                toggleTheme?.();
+                                setIsMenuOpen(false);
+                            }}
+                            className="py-3 px-4 text-left text-sm font-medium text-gray-400 hover:text-orange-500 transition-colors hover:bg-orange-500/5 rounded-lg flex items-center gap-2"
+                        >
+                            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                        </button>
                     </div>
                 </div>
             )}

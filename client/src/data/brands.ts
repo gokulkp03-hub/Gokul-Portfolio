@@ -7,6 +7,7 @@ export interface Brand {
     folder: string;
     description?: string;
     items: string[];
+    logo?: string;
 }
 
 export const brands: Brand[] = [
@@ -15,6 +16,7 @@ export const brands: Brand[] = [
         name: "Acero",
         folder: "Acero",
         description: "Metal fabrication and steel solutions",
+        logo: "/images/brands/brand-2.png",
         items: [
             "/images/brands/Acero/Acero 2-1.jpg",
             "/images/brands/Acero/acero xmas.jpg",
@@ -52,6 +54,7 @@ export const brands: Brand[] = [
         name: "Beyond Cars",
         folder: "Beyond-Cars",
         description: "Automotive SaaS platform",
+        logo: "/images/brands/brand-5.png",
         items: [
             "/images/brands/Beyond-Cars/Porsche 718 Cayman.jpg",
             "/images/brands/Beyond-Cars/range rover-1.jpg",
@@ -89,6 +92,7 @@ export const brands: Brand[] = [
         name: "Galaxy Star",
         folder: "Galaxy-Star",
         description: "Perfumes and fragrances",
+        logo: "/images/brands/brand-3.png",
         items: [
             "/images/brands/Galaxy-Star/AD 2 DEC.jpg",
             "/images/brands/Galaxy-Star/Galaxy 3.jpg",
@@ -177,6 +181,7 @@ export const brands: Brand[] = [
         name: "Suncore Energies",
         folder: "Suncore",
         description: "Solar energy solutions",
+        logo: "/images/brands/brand-8.png",
         items: [
             "/images/brands/Suncore/AD 2 - suncore.jpg",
             "/images/brands/Suncore/Artboard 1-2.jpg",

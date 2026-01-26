@@ -31,6 +31,7 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = document.documentElement;
+    console.log("Theme changed to:", theme);
     if (theme === "dark") {
       root.classList.add("dark");
     } else {
@@ -44,8 +45,8 @@ export function ThemeProvider({
 
   const toggleTheme = switchable
     ? () => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
-      }
+      setTheme(prev => (prev === "light" ? "dark" : "light"));
+    }
     : undefined;
 
   return (

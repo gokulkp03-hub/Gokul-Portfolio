@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* V4 Dark Mode Variant - Ignored by CSS linters but processed by Tailwind */
+@variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -42,84 +43,118 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-:root {
-  --primary: oklch(0.623 0.214 259.815);
-  --primary-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.623 0.214 259.815);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --chart-1: oklch(0.623 0.214 259.815);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.623 0.214 259.815);
-  --chart-4: oklch(0.623 0.214 259.815);
-  --chart-5: oklch(0.623 0.214 259.815);
-  --radius: 0.65rem;
-  --background: oklch(0.08 0.005 285.823);
-  --foreground: oklch(0.95 0.005 65);
-  --card: oklch(0.12 0.006 285.885);
-  --card-foreground: oklch(0.95 0.005 65);
-  --popover: oklch(0.15 0.006 285.885);
-  --popover-foreground: oklch(0.95 0.005 65);
-  --secondary: oklch(0.20 0.006 286.033);
-  --secondary-foreground: oklch(0.85 0.005 65);
-  --muted: oklch(0.25 0.006 286.033);
-  --muted-foreground: oklch(0.70 0.015 286.067);
-  --accent: oklch(0.72 0.19 45.3);
-  --accent-foreground: oklch(0.08 0.005 285.823);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.72 0.19 45.3);
-  --sidebar: oklch(0.12 0.006 285.885);
-  --sidebar-foreground: oklch(0.95 0.005 65);
-  --sidebar-accent: oklch(0.72 0.19 45.3);
-  --sidebar-accent-foreground: oklch(0.08 0.005 285.823);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.19 45.3);
-}
-
-.dark {
-  --primary: oklch(0.72 0.19 45.3);
-  --primary-foreground: oklch(0.08 0.005 285.823);
-  --sidebar-primary: oklch(0.72 0.19 45.3);
-  --sidebar-primary-foreground: oklch(0.08 0.005 285.823);
-  --background: oklch(0.08 0.005 285.823);
-  --foreground: oklch(0.95 0.005 65);
-  --card: oklch(0.12 0.006 285.885);
-  --card-foreground: oklch(0.95 0.005 65);
-  --popover: oklch(0.15 0.006 285.885);
-  --popover-foreground: oklch(0.95 0.005 65);
-  --secondary: oklch(0.20 0.006 286.033);
-  --secondary-foreground: oklch(0.85 0.005 65);
-  --muted: oklch(0.25 0.006 286.033);
-  --muted-foreground: oklch(0.70 0.015 286.067);
-  --accent: oklch(0.72 0.19 45.3);
-  --accent-foreground: oklch(0.08 0.005 285.823);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.72 0.19 45.3);
-  --chart-1: oklch(0.72 0.19 45.3);
-  --chart-2: oklch(0.72 0.19 45.3);
-  --chart-3: oklch(0.72 0.19 45.3);
-  --chart-4: oklch(0.72 0.19 45.3);
-  --chart-5: oklch(0.72 0.19 45.3);
-  --sidebar: oklch(0.12 0.006 285.885);
-  --sidebar-foreground: oklch(0.95 0.005 65);
-  --sidebar-accent: oklch(0.72 0.19 45.3);
-  --sidebar-accent-foreground: oklch(0.08 0.005 285.823);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.19 45.3);
-}
-
 @layer base {
+  :root {
+    /* Premium Cream Light Mode */
+    --background: 40 20% 97%;
+    /* #F9F7F4 - Warm Cream */
+    --foreground: 20 14.3% 4.1%;
+    --card: 40 20% 96%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 40 20% 96%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 24.6 95% 53.1%;
+    --radius: 0.75rem;
+
+    /* Chart Colors */
+    --chart-1: 24.6 95% 53.1%;
+    --chart-2: 60 4.8% 95.9%;
+    --chart-3: 25 5.3% 44.7%;
+    --chart-4: 20 5.9% 90%;
+    --chart-5: 20 14.3% 4.1%;
+
+    /* Sidebar Colors */
+    --sidebar: 40 20% 96%;
+    --sidebar-foreground: 20 14.3% 4.1%;
+    --sidebar-primary: 24.6 95% 53.1%;
+    --sidebar-primary-foreground: 60 9.1% 97.8%;
+    --sidebar-accent: 60 4.8% 95.9%;
+    --sidebar-accent-foreground: 24 9.8% 10%;
+    --sidebar-border: 20 5.9% 90%;
+    --sidebar-ring: 24.6 95% 53.1%;
+  }
+
+  /* Force override for Dark Mode variables - High Specificity */
+  :root.dark,
+  html.dark {
+    /* Deep Black Dark Mode */
+    color-scheme: dark;
+    --background: 0 0% 0% !important;
+    /* Pure Black */
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 20.5 90.2% 48.2%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 20.5 90.2% 48.2%;
+
+    /* Chart Colors */
+    --chart-1: 20.5 90.2% 48.2%;
+    --chart-2: 12 6.5% 15.1%;
+    --chart-3: 24 5.4% 63.9%;
+    --chart-4: 12 6.5% 15.1%;
+    --chart-5: 60 9.1% 97.8%;
+
+    /* Sidebar Colors */
+    --sidebar: 20 14.3% 4.1%;
+    --sidebar-foreground: 60 9.1% 97.8%;
+    --sidebar-primary: 20.5 90.2% 48.2%;
+    --sidebar-primary-foreground: 60 9.1% 97.8%;
+    --sidebar-accent: 12 6.5% 15.1%;
+    --sidebar-accent-foreground: 60 9.1% 97.8%;
+    --sidebar-border: 12 6.5% 15.1%;
+    --sidebar-ring: 20.5 90.2% 48.2%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600/50 rounded-full hover:bg-orange-500/50 transition-colors;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -134,24 +169,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -180,7 +202,8 @@
   }
 
   /* Mobile optimization */
-  button, a.btn {
+  button,
+  a.btn {
     @apply min-h-[44px] min-w-[44px] px-4 py-3;
   }
 
@@ -205,7 +228,8 @@
       @apply px-4 py-8;
     }
 
-    button, a.btn {
+    button,
+    a.btn {
       @apply text-base;
     }
 
@@ -232,6 +256,7 @@
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -243,6 +268,7 @@
       opacity: 0;
       transform: translateX(-30px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -254,6 +280,7 @@
       opacity: 0;
       transform: translateX(30px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -265,6 +292,7 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
@@ -272,18 +300,24 @@
   }
 
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-10px);
     }
   }
 
   @keyframes glow {
-    0%, 100% {
+
+    0%,
+    100% {
       box-shadow: 0 0 20px rgba(184, 134, 11, 0.3);
     }
+
     50% {
       box-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
     }
@@ -295,6 +329,7 @@
       opacity: 0;
       transform: translateY(-20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -306,6 +341,7 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -317,13 +353,16 @@
       opacity: 0;
       transform: scale(0.3);
     }
+
     50% {
       opacity: 1;
       transform: scale(1.05);
     }
+
     70% {
       transform: scale(0.9);
     }
+
     100% {
       transform: scale(1);
     }
@@ -333,15 +372,19 @@
     0% {
       background-position: -1000px 0;
     }
+
     100% {
       background-position: 1000px 0;
     }
   }
 
   @keyframes pulse-glow {
-    0%, 100% {
+
+    0%,
+    100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.7;
     }
@@ -351,6 +394,7 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
@@ -382,15 +426,30 @@
     animation: rotate-slow 20s linear infinite;
   }
 
-  /* Stagger animations for grid items */
-  .stagger-item-1 { animation-delay: 0.1s; }
-  .stagger-item-2 { animation-delay: 0.2s; }
-  .stagger-item-3 { animation-delay: 0.3s; }
-  .stagger-item-4 { animation-delay: 0.4s; }
-  .stagger-item-5 { animation-delay: 0.5s; }
-  .stagger-item-6 { animation-delay: 0.6s; }
+  .stagger-item-1 {
+    animation-delay: 0.1s;
+  }
 
-  /* Smooth hover effects */
+  .stagger-item-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-item-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-item-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-item-5 {
+    animation-delay: 0.5s;
+  }
+
+  .stagger-item-6 {
+    animation-delay: 0.6s;
+  }
+
   .hover-lift {
     @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
   }
@@ -403,8 +462,11 @@
     @apply transition-all duration-300 hover:shadow-lg hover:shadow-accent/50;
   }
 
-  /* Smooth transitions for all interactive elements */
-  button, a, input, select, textarea {
+  button,
+  a,
+  input,
+  select,
+  textarea {
     @apply transition-all duration-300 ease-out;
   }
 
@@ -432,137 +494,18 @@
     animation: glow 2s ease-in-out infinite;
   }
 
-  /* Apple-like animations */
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes bounce-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.3);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    70% {
-      transform: scale(0.9);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes shimmer {
-    0% {
-      background-position: -1000px 0;
-    }
-    100% {
-      background-position: 1000px 0;
-    }
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
-  }
-
-  @keyframes rotate-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animate-slideDown {
-    animation: slideDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .animate-slideUp {
-    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .animate-bounce-in {
-    animation: bounce-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    background-size: 1000px 100%;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .animate-rotate-slow {
-    animation: rotate-slow 20s linear infinite;
-  }
-
-  /* Stagger animations for grid items */
-  .stagger-item-1 { animation-delay: 0.1s; }
-  .stagger-item-2 { animation-delay: 0.2s; }
-  .stagger-item-3 { animation-delay: 0.3s; }
-  .stagger-item-4 { animation-delay: 0.4s; }
-  .stagger-item-5 { animation-delay: 0.5s; }
-  .stagger-item-6 { animation-delay: 0.6s; }
-
-  /* Smooth hover effects */
-  .hover-lift {
-    @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
-  }
-
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
-  }
-
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-lg hover:shadow-accent/50;
-  }
-
-  /* Smooth transitions for all interactive elements */
-  button, a, input, select, textarea {
-    @apply transition-all duration-300 ease-out;
-  }
-
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }
@@ -590,7 +533,6 @@
   background: hsl(var(--accent));
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }

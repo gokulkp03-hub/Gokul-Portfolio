@@ -1,6 +1,6 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 
-export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "Gokul KP - Premium Portfolio";
+export const APP_TITLE = "Gokul KP - Portfolio";
 
 export const APP_LOGO = "/gokul-logo.png";
 

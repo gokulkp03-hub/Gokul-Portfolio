@@ -1,8 +1,41 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3, Layers } from "lucide-react";
+import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3, Layers, Play, Pause, X, Monitor, Smartphone, PenTool } from "lucide-react";
 import { useLocation } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { caseStudies } from "@/data/caseStudies";
+import { useState } from "react";
+
+const CREATIVE_SHOWCASE = [
+  { id: "video", title: "Video Production", tagline: "Shoot + Edit", icon: Video, color: "text-blue-500", link: "/portfolio/video-production" },
+  { id: "photo", title: "Photography", tagline: "Brand visuals", icon: Camera, color: "text-purple-500", link: "/portfolio/photography" },
+  { id: "design", title: "Graphic Design", tagline: "Social creatives", icon: PenTool, color: "text-pink-500", link: "/portfolio/graphic-design" },
+  { id: "motion", title: "Motion Graphics", tagline: "Animated stories", icon: Zap, color: "text-yellow-500", link: "/portfolio/motion-graphics" },
+  { id: "ads", title: "Performance Ads", tagline: "Meta campaigns", icon: Target, color: "text-green-500", link: "/portfolio/marketing-growth" },
+];
+
+const PERFORMANCE_PROOF = [
+  {
+    id: 1,
+    client: "Healthy Meals",
+    metric: "4.2x ROAS",
+    result: "$63k Revenue",
+    image: "/images/case-studies/healthy-meals/results.jpg" // Placeholder path, assumes exists or falls back
+  },
+  {
+    id: 2,
+    client: "BeyondCars",
+    metric: "287 Leads",
+    result: "$42 Cost/Lead",
+    image: "/images/case-studies/beyondcars/campaign-overview.jpg"
+  },
+  {
+    id: 3,
+    client: "PrepMeal",
+    metric: "-38% CPA",
+    result: "300+ Leads",
+    image: "/images/case-studies/prepmeal/results.jpg"
+  }
+];
 
 const FEATURED_WORK = [
   {
@@ -85,6 +118,7 @@ const staggerContainer = {
 
 export default function Home() {
   const [, navigate] = useLocation();
+  const [showReel, setShowReel] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     if (sectionId === "services") navigate("/services");
@@ -254,6 +288,106 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Creative Showcase Section */}
+      <section className="relative py-12 px-0 bg-black border-b border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+          <p className="text-gray-400 text-sm uppercase tracking-widest text-center md:text-left">
+            A quick look at what I create
+          </p>
+        </div>
+
+        {/* Horizontal Scroll Strip */}
+        <div className="flex overflow-x-auto pb-8 hide-scrollbar px-4 sm:px-6 lg:px-8 gap-4 md:grid md:grid-cols-5 md:gap-4 md:overflow-visible">
+          {CREATIVE_SHOWCASE.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                onClick={() => navigate(item.link)}
+                className="flex-shrink-0 w-64 md:w-auto p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-orange-500/30 hover:bg-white/10 transition-all duration-300 cursor-pointer group flex flex-col justify-between h-40 relative overflow-hidden"
+              >
+                <div className={`p-3 rounded-xl bg-black/40 w-fit mb-4 group-hover:scale-110 transition-transform duration-300 ${item.color}`}>
+                  <Icon size={24} />
+                </div>
+                <div>
+                  <h3 className="text-white font-bold text-lg leading-tight group-hover:text-orange-400 transition-colors">{item.title}</h3>
+                  <p className="text-gray-500 text-sm mt-1">{item.tagline}</p>
+                </div>
+                {/* Glow Effect */}
+                <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-gradient-to-br from-white/5 to-white/0 rounded-full blur-xl group-hover:bg-orange-500/20 transition-all duration-500" />
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Showreel Block */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="rounded-3xl overflow-hidden border border-white/10 relative group cursor-pointer"
+            onClick={() => setShowReel(true)}
+          >
+            {/* Thumbnail */}
+            <div className="aspect-video w-full bg-gray-900 relative">
+              <img
+                src="/images/cover/reel-cover.jpg"
+                alt="Showreel Cover"
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2942&auto=format&fit=crop")}
+              />
+              {/* Play Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl">
+                  <Play className="w-8 h-8 md:w-10 md:h-10 text-white fill-white ml-1" />
+                </div>
+              </div>
+              <div className="absolute bottom-8 left-8">
+                <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">2024 Showreel</h3>
+                <p className="text-gray-300">Highlighting the best moments in video & motion</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {showReel && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4"
+            onClick={() => setShowReel(false)}
+          >
+            <button
+              className="absolute top-6 right-6 p-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors"
+              onClick={() => setShowReel(false)}
+            >
+              <X size={24} />
+            </button>
+            <div className="w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&modestbranding=1&rel=0"
+                title="Showreel"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Featured Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
         <div className="max-w-6xl mx-auto">
@@ -349,22 +483,17 @@ export default function Home() {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                className="group relative overflow-hidden rounded-xl aspect-[3/2] flex flex-col items-center justify-center transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-xl aspect-[3/2] flex flex-col items-center justify-center transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10"
               >
-                {/* Brand Stage - White pill for visibility */}
-                <div className="absolute inset-0 bg-white/90 backdrop-blur-sm group-hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]" />
-
                 {/* Logo Container */}
                 <div className="relative w-full h-full p-6 flex items-center justify-center z-10">
                   <img
                     src={brand.img}
                     alt={brand.name}
-                    className="w-full h-full object-contain filter brightness-100 contrast-125"
+                    className="w-full h-full object-contain filter contrast-125 opacity-90 group-hover:opacity-100 transition-opacity"
                     loading="lazy"
                   />
                 </div>
-
-                {/* Optional: Brand Name overlay on hover if needed, or keep clean */}
               </motion.div>
             ))}
           </motion.div>
@@ -494,6 +623,54 @@ export default function Home() {
             Get in Touch <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>
+      </section>
+
+      {/* Performance Proof Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Performance Proof</h2>
+            <p className="text-xl text-gray-400 max-w-2xl">Real campaign snapshots — strategy, creatives, and results.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {PERFORMANCE_PROOF.map((item, idx) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="group relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900/40 backdrop-blur-md hover:border-orange-500/50 transition-all duration-300"
+              >
+                <div className="aspect-[4/5] bg-gray-800 relative overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={`${item.client} Results`}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-orange-500 text-sm font-bold uppercase mb-1">{item.client}</p>
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-white text-2xl font-bold">{item.metric}</p>
+                        <p className="text-gray-400 text-sm">{item.result}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Case Studies Section */}
