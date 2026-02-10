@@ -1,5 +1,6 @@
 import { useParams, useLocation } from "wouter";
 import { getBrandById } from "@/data/brands";
+import { setSEO } from "@/utils/seo";
 import { ArrowLeft, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,7 +13,15 @@ export default function BrandGallery() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [params.brand]);
+        if (brand) {
+            setSEO({
+                title: `${brand.name} - Brand Gallery | Gokul KP`,
+                description: brand.description || `Explore social media graphics and designs for ${brand.name}.`,
+                image: brand.items[0] || "/images/og-image.jpg",
+                url: `https://gokulkp.com/portfolio/brand/${brand.id}`
+            });
+        }
+    }, [brand, params.brand]);
 
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
         if (lightboxIndex === null) return;

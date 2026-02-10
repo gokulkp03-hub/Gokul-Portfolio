@@ -39,7 +39,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="sticky top-0 z-40 border-b border-white/5 bg-gray-900/60 backdrop-blur-lg support-[backdrop-filter]:bg-gray-900/60">
+        <nav className="sticky top-0 z-40 border-b border-border/40 bg-background/60 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
                 <div
                     className="text-2xl font-bold cursor-pointer"
@@ -96,7 +96,7 @@ export default function Navbar() {
             </div>
 
             {isMenuOpen && (
-                <div className="md:hidden border-t border-white/5 bg-gray-900/90 backdrop-blur-lg">
+                <div className="md:hidden border-t border-border/40 bg-background/90 backdrop-blur-lg">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-2">
                         {NAV_ITEMS.map((item) => (
                             <button

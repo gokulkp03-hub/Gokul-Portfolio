@@ -1,41 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Video, Camera, Edit3, Palette, Zap, ExternalLink, TrendingUp, Target, BarChart3, Layers, Play, Pause, X, Monitor, Smartphone, PenTool } from "lucide-react";
+import { ArrowRight, Video, Palette, ExternalLink, TrendingUp, Target, BarChart3, Play } from "lucide-react";
 import { useLocation } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { caseStudies } from "@/data/caseStudies";
-import { useState } from "react";
-
-const CREATIVE_SHOWCASE = [
-  { id: "video", title: "Video Production", tagline: "Shoot + Edit", icon: Video, color: "text-blue-500", link: "/portfolio/video-production" },
-  { id: "photo", title: "Photography", tagline: "Brand visuals", icon: Camera, color: "text-purple-500", link: "/portfolio/photography" },
-  { id: "design", title: "Graphic Design", tagline: "Social creatives", icon: PenTool, color: "text-pink-500", link: "/portfolio/graphic-design" },
-  { id: "motion", title: "Motion Graphics", tagline: "Animated stories", icon: Zap, color: "text-yellow-500", link: "/portfolio/motion-graphics" },
-  { id: "ads", title: "Performance Ads", tagline: "Meta campaigns", icon: Target, color: "text-green-500", link: "/portfolio/marketing-growth" },
-];
-
-const PERFORMANCE_PROOF = [
-  {
-    id: 1,
-    client: "Healthy Meals",
-    metric: "4.2x ROAS",
-    result: "$63k Revenue",
-    image: "/images/case-studies/healthy-meals/results.jpg" // Placeholder path, assumes exists or falls back
-  },
-  {
-    id: 2,
-    client: "BeyondCars",
-    metric: "287 Leads",
-    result: "$42 Cost/Lead",
-    image: "/images/case-studies/beyondcars/campaign-overview.jpg"
-  },
-  {
-    id: 3,
-    client: "PrepMeal",
-    metric: "-38% CPA",
-    result: "300+ Leads",
-    image: "/images/case-studies/prepmeal/results.jpg"
-  }
-];
+import { useState, useEffect } from "react";
+import ShowreelModal from "@/components/ShowreelModal";
+import CreativeShowcaseStrip from "@/components/CreativeShowcaseStrip";
+import PerformanceProof from "@/components/PerformanceProof";
+import { setSEO } from "@/utils/seo";
 
 const FEATURED_WORK = [
   {
@@ -130,6 +102,14 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    setSEO({
+      title: "Gokul KP - Digital Marketer & Performance Strategist",
+      description: "I design, launch, and scale performance-driven marketing systems — combining Meta ads, funnels, content, and creative production to drive real business growth.",
+      url: "https://gokulkp.com/"
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
 
@@ -213,19 +193,18 @@ export default function Home() {
                   className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
                 >
                   Contact Me
+                </Button>
 
-<Button
-  onClick={() =>
-    window.open(
-      "https://drive.google.com/drive/folders/1o8NvNmd9vjd8Id7LJuXiwfw8_Q60VhHx?usp=sharing",
-      "_blank"
-    )
-  }
-  className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
->
-  Full Portfolio
-</Button>
-
+                <Button
+                  onClick={() =>
+                    window.open(
+                      "https://drive.google.com/drive/folders/1o8NvNmd9vjd8Id7LJuXiwfw8_Q60VhHx?usp=sharing",
+                      "_blank"
+                    )
+                  }
+                  className="px-8 py-6 rounded-lg font-semibold bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-orange-500/50 text-lg transition-all duration-300"
+                >
+                  Full Portfolio
                 </Button>
               </motion.div>
             </motion.div>
@@ -298,62 +277,20 @@ export default function Home() {
             </motion.div>
 
           </div>
-       </div>
-</section>
+        </div>
+      </section>
 
-{/* Creative Showcase Section */}
-<section className="relative py-12 bg-black border-b border-white/5 overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-6">
-    <p className="text-orange-500/80 text-sm uppercase tracking-widest font-medium">
-      A quick look at what I create
-    </p>
-  </div>
+      {/* Creative Showcase Section */}
+      <section className="relative py-12 bg-black border-b border-white/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-6">
+          <p className="text-orange-500/80 text-sm uppercase tracking-widest font-medium">
+            A quick look at what I create
+          </p>
+        </div>
 
-  {/* Proper Grid (no weird wide cards) */}
-  <div className="max-w-7xl mx-auto px-6 lg:px-12">
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-      {CREATIVE_SHOWCASE.map((item, idx) => {
-        const Icon = item.icon;
-        return (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.08 }}
-            onClick={() => navigate(item.link)}
-            className="p-6 rounded-2xl bg-black/50 backdrop-blur-xl border border-white/10 hover:border-orange-500/40 hover:bg-black/70 transition-all duration-300 cursor-pointer group flex flex-col justify-between min-h-[160px] relative overflow-hidden shadow-lg hover:shadow-orange-500/10"
-          >
-           <div className="
-  p-3 rounded-xl 
-  bg-black/60 
-  w-fit mb-4 
-  border border-white/10 
-  text-gray-400
-  group-hover:text-orange-400
-  group-hover:border-orange-500/40
-  group-hover:scale-110
-  transition-all duration-300
-">
-  <Icon size={22} />
-</div>
-
-
-            <div>
-              <h3 className="text-white font-semibold text-lg leading-tight group-hover:text-orange-400 transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-gray-400 text-sm mt-1">{item.tagline}</p>
-            </div>
-
-            {/* Subtle Glow */}
-            <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </motion.div>
-        );
-      })}
-    </div>
-  </div>
-</section>
+        {/* Proper Grid (no weird wide cards) */}
+        <CreativeShowcaseStrip />
+      </section>
 
 
       {/* Showreel Block */}
@@ -391,33 +328,7 @@ export default function Home() {
       </section>
 
       {/* Video Modal */}
-      <AnimatePresence>
-        {showReel && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4"
-            onClick={() => setShowReel(false)}
-          >
-            <button
-              className="absolute top-6 right-6 p-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition-colors"
-              onClick={() => setShowReel(false)}
-            >
-              <X size={24} />
-            </button>
-            <div className="w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&modestbranding=1&rel=0"
-                title="Showreel"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ShowreelModal isOpen={showReel} onClose={() => setShowReel(false)} videoId="757462061" />
 
       {/* Featured Work Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
@@ -517,11 +428,11 @@ export default function Home() {
                 className="group relative overflow-hidden rounded-xl aspect-[3/2] flex flex-col items-center justify-center transition-all duration-300 transform hover:-translate-y-1 bg-white/90 backdrop-blur-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] border border-white/10"
               >
                 {/* Logo Container */}
-                <div className="relative w-full h-full p-6 flex items-center justify-center z-10">
+                <div className="relative w-full h-full p-6 flex items-center justify-center z-10 bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
                   <img
                     src={brand.img}
                     alt={brand.name}
-                    className="w-full h-full object-contain filter contrast-125 opacity-90 group-hover:opacity-100 transition-opacity"
+                    className="max-h-12 w-auto object-contain filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                     loading="lazy"
                   />
                 </div>
@@ -630,8 +541,6 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* Final CTA Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-600/20 to-orange-500/10 border-t border-orange-500/30">
         <motion.div
@@ -657,52 +566,7 @@ export default function Home() {
       </section>
 
       {/* Performance Proof Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-black">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Performance Proof</h2>
-            <p className="text-xl text-gray-400 max-w-2xl">Real campaign snapshots — strategy, creatives, and results.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {PERFORMANCE_PROOF.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group relative rounded-2xl overflow-hidden border border-white/10 bg-gray-900/40 backdrop-blur-md hover:border-orange-500/50 transition-all duration-300"
-              >
-                <div className="aspect-[4/5] bg-gray-800 relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={`${item.client} Results`}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-orange-500 text-sm font-bold uppercase mb-1">{item.client}</p>
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <p className="text-white text-2xl font-bold">{item.metric}</p>
-                        <p className="text-gray-400 text-sm">{item.result}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PerformanceProof />
 
       {/* Case Studies Section */}
       <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gray-900/20 border-t border-gray-800">

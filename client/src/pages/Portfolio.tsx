@@ -1,9 +1,19 @@
 import { useLocation } from "wouter";
 import { portfolioData } from "@/lib/portfolioData";
 import { ArrowRight, ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
+import { setSEO } from "@/utils/seo";
 
 export default function Portfolio() {
   const [, navigate] = useLocation();
+
+  useEffect(() => {
+    setSEO({
+      title: "Portfolio - Gokul KP",
+      description: "Explore my work across Video Production, Photography, Graphic Design, and Performance Marketing.",
+      url: "https://gokulkp.com/portfolio"
+    });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black pt-24 pb-16">
@@ -84,7 +94,7 @@ export default function Portfolio() {
 
       {/* Quick Links Section */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Featured Work */}
           <div className="rounded-xl bg-gray-900/40 backdrop-blur-md border border-white/5 hover:border-orange-500/50 transition-all duration-300 p-8 animate-slideUp" style={{ animationDelay: "0.3s" }}>
             <h3 className="text-2xl font-bold text-white mb-4">Featured Work</h3>

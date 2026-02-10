@@ -19,12 +19,14 @@ import CaseStudies from "./pages/CaseStudies";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import BrandGallery from "./pages/BrandGallery";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function Router() {
   return (
     <>
       <ScrollToTop />
       <Navbar />
+      <WhatsAppButton />
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/services"} component={Services} />

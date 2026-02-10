@@ -31,17 +31,14 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = document.documentElement;
-    console.log("Theme changed to:", theme);
+    root.setAttribute("data-theme", theme);
     if (theme === "dark") {
       root.classList.add("dark");
     } else {
       root.classList.remove("dark");
     }
-
-    if (switchable) {
-      localStorage.setItem("theme", theme);
-    }
-  }, [theme, switchable]);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = switchable
     ? () => {

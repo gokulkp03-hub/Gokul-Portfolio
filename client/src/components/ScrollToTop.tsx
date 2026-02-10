@@ -2,27 +2,28 @@ import { useEffect } from "react";
 import { useLocation } from "wouter";
 
 export default function ScrollToTop() {
-    const [location] = useLocation();
+    const [pathname] = useLocation();
 
     useEffect(() => {
-        // Check if there's a hash in the URL (like /#contact)
-        if (location.includes("#")) {
-            // Extract the hash
-            const hash = location.split("#")[1];
-            if (hash) {
-                // Small delay to ensure DOM is ready
-                setTimeout(() => {
-                    const element = document.getElementById(hash);
-                    if (element) {
-                        element.scrollIntoView({ behavior: "smooth" });
-                    }
-                }, 100);
-            }
-        } else {
-            // No hash, scroll to top
-            window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+        // Disable browser's default scroll restoration to avoid conflicts
+        if ("scrollRestoration" in window.history) {
+            window.history.scrollRestoration = "manual";
         }
-    }, [location]);
+
+        // Handle hash anchor scrolling
+        if (window.location.hash) {
+            const id = window.location.hash.replace("#", "");
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }, 100);
+        } else {
+            // Always scroll to top on route change
+            window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
+    }, [pathname]);
 
     return null;
 }

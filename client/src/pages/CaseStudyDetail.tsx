@@ -3,6 +3,8 @@ import { useLocation, useParams } from "wouter";
 import { caseStudies } from "@/data/caseStudies";
 import { ArrowLeft, TrendingUp, Target, CheckCircle2, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { setSEO } from "@/utils/seo";
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -42,6 +44,17 @@ export default function CaseStudyDetail() {
             </div>
         );
     }
+
+    useEffect(() => {
+        if (caseStudy) {
+            setSEO({
+                title: `${caseStudy.client} - Case Study | Gokul KP`,
+                description: caseStudy.objective,
+                image: caseStudy.visuals[0] || "/images/og-image.jpg",
+                url: `https://gokulkp.com/case-studies/${slug}`
+            });
+        }
+    }, [caseStudy, slug]);
 
     return (
         <div className="min-h-screen bg-black pt-20">

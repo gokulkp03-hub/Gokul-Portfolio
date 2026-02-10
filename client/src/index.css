@@ -47,26 +47,42 @@
   :root {
     /* Premium Cream Light Mode */
     --background: 40 20% 97%;
-    /* #F9F7F4 - Warm Cream */
+    /* #F6F3EE - Soft Cream */
     --foreground: 20 14.3% 4.1%;
-    --card: 40 20% 96%;
+    /* Deep Dark for text */
+
+    --card: 0 0% 100%;
     --card-foreground: 20 14.3% 4.1%;
-    --popover: 40 20% 96%;
+
+    --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
+
     --primary: 24.6 95% 53.1%;
+    /* Orange */
     --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 60 4.8% 95.9%;
+
+    --secondary: 40 20% 93%;
     --secondary-foreground: 24 9.8% 10%;
-    --muted: 60 4.8% 95.9%;
+
+    --muted: 40 20% 90%;
     --muted-foreground: 25 5.3% 44.7%;
-    --accent: 60 4.8% 95.9%;
-    --accent-foreground: 24 9.8% 10%;
+
+    --accent: 24.6 95% 53.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 60 9.1% 97.8%;
+
     --border: 20 5.9% 90%;
     --input: 20 5.9% 90%;
     --ring: 24.6 95% 53.1%;
+
     --radius: 0.75rem;
+
+    /* Glass Effect Variables - Light Mode */
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 
     /* Chart Colors */
     --chart-1: 24.6 95% 53.1%;
@@ -86,31 +102,41 @@
     --sidebar-ring: 24.6 95% 53.1%;
   }
 
-  /* Force override for Dark Mode variables - High Specificity */
-  :root.dark,
-  html.dark {
+  [data-theme="dark"] {
     /* Deep Black Dark Mode */
-    color-scheme: dark;
-    --background: 0 0% 0% !important;
+    --background: 0 0% 0%;
     /* Pure Black */
     --foreground: 60 9.1% 97.8%;
+
     --card: 20 14.3% 4.1%;
     --card-foreground: 60 9.1% 97.8%;
+
     --popover: 20 14.3% 4.1%;
     --popover-foreground: 60 9.1% 97.8%;
-    --primary: 20.5 90.2% 48.2%;
+
+    --primary: 24.6 95% 53.1%;
     --primary-foreground: 60 9.1% 97.8%;
+
     --secondary: 12 6.5% 15.1%;
     --secondary-foreground: 60 9.1% 97.8%;
+
     --muted: 12 6.5% 15.1%;
     --muted-foreground: 24 5.4% 63.9%;
+
     --accent: 12 6.5% 15.1%;
     --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 72.2% 50.6%;
+
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 60 9.1% 97.8%;
+
     --border: 12 6.5% 15.1%;
     --input: 12 6.5% 15.1%;
-    --ring: 20.5 90.2% 48.2%;
+    --ring: 24.6 95% 53.1%;
+
+    /* Glass Effect Variables - Dark Mode */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
     /* Chart Colors */
     --chart-1: 20.5 90.2% 48.2%;
@@ -193,7 +219,12 @@
 
   /* Glass morphism effect */
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    @apply rounded-2xl;
   }
 
   /* Smooth transitions */
@@ -525,12 +556,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
+  background: hsl(var(--muted-foreground) / 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent));
+  background: hsl(var(--primary));
 }
 
 html {
